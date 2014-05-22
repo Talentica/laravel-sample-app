@@ -1,10 +1,18 @@
 LARAVEL INSTALLATION STEPS-
 
-Install composer.phar 
- **curl -sS https://getcomposer.org/installer | php**
 
-You can install Laravel by issuing the following command from your terminal: 
- **php composer.phar create-project laravel/laravel your-project-name --prefer-dist**
+Install composer. 
+
+**curl -sS https://getcomposer.org/installer | php**
+
+Clone or download this repository.
+In a terminal, run composer install.
+Create a new MySQL database.
+Update the mysql connection options in app/config/database.php.
+Run php artisan migrate in the terminal.
+Run php artisan db:seed in the terminal.
+Done
+
 
 ### Response Codes
 
