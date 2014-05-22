@@ -1,35 +1,4 @@
-# Laracon 2013 Demo API
 
-**See the presentation slides on [Speaker Deck](https://speakerdeck.com/akuzemchak/simple-api-development-with-laravel) or the video on [YouTube](http://www.youtube.com/watch?v=xa-FRWDxJrI).**
-
-## Setup Instructions
-
-_**Please note:** by default this API requires that you have [APC](http://www.php.net/manual/en/book.apc.php) installed for rate limiting. You can change the driver if desired in `app/config/cache.php`._
-
-1. Make sure you have [Composer](http://getcomposer.org/) installed. I recommend [installing it globally](http://getcomposer.org/doc/00-intro.md#globally).
-2. Clone or download this repository.
-3. In a terminal, `cd` into this project's directory and run `composer install`.
-4. Create a new MySQL database.
-5. Update the `mysql` connection options in `app/config/database.php`.
-6. Run `php artisan migrate` in the terminal.
-7. Run `php artisan db:seed` in the terminal.
-8. Start hitting the API in whatever tool you choose. [Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?utm_source=chrome-ntp-launcher) is a nice Chrome extension, and [HTTPie](https://github.com/jkbr/httpie) is a good command line option.
-
-## API Documentation
-
-### Authentication
-
-The API uses Basic HTTP authentication for all requests. You must pass a valid API key as a username, and the password can literally be anything.
-
-If you were going to connect via cURL, you would do this:
-
-`curl -u "youruserapikeygoeshere:whatever" http://localapidomain.dev/v1/lists`
-
-Note that we sent **whatever** as the password. This can be anything… it doesn't matter. However, since authentication is based on the API key only, you shouldn't share it with anyone.
-
-### Response Formats
-
-All responses are in JSON format.
 
 ### Response Codes
 

@@ -13,7 +13,7 @@
 
 Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
 {
-	// Get all lists
+	// Get all lists via 
 	Route::get('lists', function()
 	{
 		$lists = Auth::user()->tasklists;
