@@ -19,4 +19,10 @@ target/
 #vagrant
 .vagrant
 #vendor
-vendor
+talentica.dev/vendor
+#.htaccess
+talentica.dev/public/\.htaccess*
+#nginx default html folder
+html
+#database
+talentica.dev/app/database/*.sqlite
