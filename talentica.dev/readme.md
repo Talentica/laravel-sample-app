@@ -1,19 +1,11 @@
-LARAVEL INSTALLATION STEPS-
-
-
-Install composer. 
-
-**curl -sS https://getcomposer.org/installer | php**
-
+APPLICATION INSTALLATION STEPS
+===============================
 Clone or download this repository.
-In a terminal, run composer install.
-Create a new MySQL database.
-Update the mysql connection options in app/config/database.php.
+In a terminal, run php composer.phar install in the talentica.dev dir in your vagrant virtual machine. You can ssh into the vagrant machine via vagrant ssh in the git root.
 Run php artisan migrate in the terminal.
+If this throws a PDO:Exception for sqlite, touch app/database/production.sqlite like so:
 Run php artisan db:seed in the terminal.
 Done
-
-
 ### Response Codes
 
 * **200:** The request was successful.
