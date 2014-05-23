@@ -103,7 +103,7 @@ nginx:
             server_name: talentica.dev
             server_aliases:
                 - www.talentica.dev
-            www_root: /var/www/talentica.dev
+            www_root: /var/www/talentica.dev/public
             listen_port: '80'
             index_files:
                 - index.html
