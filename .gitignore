@@ -18,3 +18,5 @@ target/
 
 #vagrant
 .vagrant
+#vendor
+vendor
