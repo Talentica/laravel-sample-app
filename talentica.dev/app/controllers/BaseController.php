@@ -1,5 +1,5 @@
 <?php
-
+namespace Talentica\Controller;
 class BaseController extends Controller {
 
 	/**

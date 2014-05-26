@@ -1,6 +1,7 @@
 <?php
 
-class ListController extends \BaseController {
+namespace Talentica\Controller;
+class ListController extends BaseController {
 
     protected $user; //Protected to allow overriding in tests
 

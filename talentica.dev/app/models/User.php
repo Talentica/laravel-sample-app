@@ -28,7 +28,7 @@ class User extends Eloquent implements UserInterface
 		return $this->hasMany('TaskList');
 	}
 
-	/**
+	/*;;*
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
@@ -68,4 +68,27 @@ class User extends Eloquent implements UserInterface
 	{
 		return Str::random(32);
 	}
+
+    public function getRememberToken()
+    {
+        return $this->token;
+
+    }
+
+    public function setRememberToken($token)
+    {
+        $this->token = $token;
+    }
+
+    public function getRememberTokenName()
+    {
+        return $this->token;
+
+    }
+
+    public function setRememberTokenName($token)
+    {
+        $this->token = $token;
+    }
+
 }

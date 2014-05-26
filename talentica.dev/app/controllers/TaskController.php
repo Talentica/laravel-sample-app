@@ -1,6 +1,7 @@
 <?php
 
-class TaskController extends \BaseController {
+
+class TaskController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
