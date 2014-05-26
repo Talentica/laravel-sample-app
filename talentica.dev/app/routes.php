@@ -13,61 +13,9 @@
 
 Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
 {
-	// Get all lists via 
-	Route::get('lists', function()
-	{
-		$lists = Auth::user()->tasklists;
 
-		return Response::json($lists->toArray());
-	});
 
-	// Create new list
-	Route::post('lists', function()
-	{
-		$list = new TaskList(Input::get());
-		$list->validate();
-		$list->user_id = Auth::user()->id;
-
-		if (!$list->save())
-		{
-			App::abort(500, 'List was not saved');
-		}
-
-		return Response::json($list->toArray(), 201);
-	});
-
-	// Get list by ID
-	Route::get('lists/{id}', function($id)
-	{
-		$list = TaskList::findByOwnerAndId(Auth::user(), $id);
-
-		return Response::json($list->toArray());
-	})->where('id', '\d+');
-
-	// Update list by ID
-	Route::put('lists/{id}', function($id)
-	{
-		$list = TaskList::findByOwnerAndId(Auth::user(), $id);
-		$list->fill(Input::get());
-		$list->validate();
-
-		if (!$list->save())
-		{
-			App::abort(500, 'List was not updated');
-		}
-
-		return Response::json($list->toArray());
-	})->where('id', '\d+');
-
-	// Delete list by ID
-	Route::delete('lists/{id}', function($id)
-	{
-		$list = TaskList::findByOwnerAndId(Auth::user(), $id);
-		$list->delete();
-
-		return Response::make(null, 204);
-	})->where('id', '\d+');
-
+    Route::resource('lists', 'ListController');
 	// Get tasks for list
 	Route::get('lists/{id}/tasks', function($id)
 	{
