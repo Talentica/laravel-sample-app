@@ -2,6 +2,13 @@
 
 class ListController extends \BaseController {
 
+    protected $user; //Protected to allow overriding in tests
+
+    public function __construct()
+    {
+            $this->user = Auth::user();
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +16,7 @@ class ListController extends \BaseController {
 	 */
 	public function index()
 	{
-        $lists = Auth::user()->tasklists;
+        $lists = $this->user->tasklists;
 
         return Response::json($lists->toArray());
 	}
@@ -23,7 +30,7 @@ class ListController extends \BaseController {
 	{
 		$list = new TaskList(Input::get());
         $list->validate();
-        $list->user_id = Auth::user()->id;
+        $list->user_id = $this->user->id;
 
         if (!$list->save())
         {
@@ -51,7 +58,7 @@ class ListController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $id);
+        $list = TaskList::findByOwnerAndId($this->user, $id);
 
         return Response::json($list->toArray());
 	}
@@ -73,9 +80,10 @@ class ListController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function update($id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $id);
+        $list = TaskList::findByOwnerAndId($this->user(), $id);
         $list->fill(Input::get());
         $list->validate();
 
@@ -93,9 +101,10 @@ class ListController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function destroy($id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $id);
+        $list = TaskList::findByOwnerAndId($this->user(), $id);
         $list->delete();
 
         return Response::make(null, 204);
