@@ -6,15 +6,8 @@
  * Time: 5:15 PM
  */
 
-trait CrudRepositoryEloquent
+class CrudRepositoryEloquent implements CrudRepository
 {
-
-    private $model;
-    public function __construct (Eloquent $model)
-    {
-        $this->model = $model;
-    }
-
 
     /**
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
