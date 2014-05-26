@@ -19,47 +19,47 @@ Done
 
 ## API Endpoints
 
-### GET /v1/lists
+### GET /api/v1/lists
 
 Retrieve an array of the authenticated user's tasklists.
 
-### POST /v1/lists
+### POST /api/v1/lists
 
 Create a new tasklist. Returns status code **201** on success. Accepts the following parameters:
 
 * **name** &ndash; The name of the tasklist.
 
-### GET /v1/lists/{id}
+### GET /api/v1/lists/{id}
 
 Retrieve the tasklist with the given ID.
 
-### PUT /v1/lists/{id}
+### PUT /api/v1/lists/{id}
 
 Update the tasklist with the given ID. Accepts the same parameters as **POST /v1/lists**.
 
-### DELETE /v1/lists/{id}
+### DELETE /api/v1/lists/{id}
 
 Delete the tasklist (and all associated tasks) with the given ID. Returns status code **204** on success.
 
-### GET /v1/lists/{id}/tasks
+### GET /api/v1/lists/{id}/tasks
 
 Retrieve tasks for the tasklist with the given ID.
 
-### POST /v1/lists/{id}/tasks
+### POST /api/v1/lists/{id}/tasks
 
 Create a new task for the tasklist with the given ID. Returns status code **201** on success. Accepts the following parameters:
 
 * **description** &ndash; The description of the task.
 * **completed** &ndash; Whether or not the task is completed. A value of **yes**, **y**, **1**, **true**, or **t** will set the task as completed. Anything else will set the task as not completed.
 
-### GET /v1/lists/{id}/tasks/{taskid}
+### GET /api/v1/lists/{id}/tasks/{taskid}
 
 Retrieve the task with the given ID.
 
-### PUT /v1/lists/{id}/tasks/{taskid}
+### PUT /api/v1/lists/{id}/tasks/{taskid}
 
 Update the task with the given ID. Accepts the same parameters as **POST /v1/lists/{id}/tasks**.
 
-### DELETE /v1/lists/{id}/tasks/{taskid}
+### DELETE /api/v1/lists/{id}/tasks/{taskid}
 
 Delete the task with the given ID. Returns status code **204** on success.

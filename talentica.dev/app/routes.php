@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
+Route::group(array('prefix' => 'api/v1', 'before' => 'api.auth|api.limit'), function()
 {
 
     Route::resource('lists', 'ListController');
