@@ -7,9 +7,11 @@ class TaskController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($parent_id)
 	{
-		//
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        return Response::json($list->tasks->toArray());
 	}
 
 	/**
@@ -17,9 +19,20 @@ class TaskController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($parent_id)
 	{
-		//
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        $task = new Task(Input::get());
+        $task->validate();
+        $task->list_id = $parent_id;
+
+        if (!$task->save())
+        {
+            App::abort(500, 'Task was not saved');
+        }
+
+        return Response::json($task->toArray(), 201);
 	}
 
 	/**
@@ -38,9 +51,18 @@ class TaskController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($parent_id, $id)
 	{
-		//
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        $task = $list->tasks()->find($id);
+
+        if (!$task)
+        {
+            App::abort(404);
+        }
+
+        return Response::json($task->toArray());
 	}
 
 	/**
@@ -49,10 +71,26 @@ class TaskController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($parent_id, $id)
 	{
-		//
-	}
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        $task = $list->tasks()->find($id);
+
+        if (!$task)
+        {
+            App::abort(404);
+        }
+
+        $task->fill(Input::get());
+        $task->validate();
+
+        if (!$task->save())
+        {
+            App::abort(500, 'Task was not updated');
+        }
+
+    }
 
 	/**
 	 * Update the specified resource in storage.
@@ -60,9 +98,24 @@ class TaskController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($parent_id, $id)
 	{
-		//
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        $task = $list->tasks()->find($id);
+
+        if (!$task)
+        {
+            App::abort(404);
+        }
+
+        $task->fill(Input::get());
+        $task->validate();
+
+        if (!$task->save())
+        {
+            App::abort(500, 'Task was not updated');
+        }
 	}
 
 	/**
@@ -71,9 +124,20 @@ class TaskController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($parent_id, $id)
 	{
-		//
+        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+
+        $task = $list->tasks()->find($id);
+
+        if (!$task)
+        {
+            App::abort(404);
+        }
+
+        $task->delete();
+
+        return Response::make(null, 204);
 	}
 
 }
