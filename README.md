@@ -5,7 +5,7 @@ ToDo list web application using laravel and angularJs
 -----------------------------------------------------
 
 Vagrant up should bring up something on 10.10.10.2. Add a host to your hosts file [/etc/hosts] called talentica.dev pointing to 10.10.10.2
-and see if talentica.dev/info.php says HipHop. If it does, you just got served a php page via HHVM. Your app should be available in talentica.dev/v1/lists or similar.
+and see if talentica.dev/info.php says HipHop. If it does, you just got served a php page via HHVM. Your app should be available in talentica.dev/api/v1/lists or similar.
 
 Ignore any errors regarding php-fpm if you see them when you do vagrant up.
 
