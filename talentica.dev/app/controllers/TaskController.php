@@ -11,7 +11,7 @@ class TaskController extends BaseController {
 	 */
 	public function index($parent_id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         return \Response::json($list->tasks->toArray());
 	}
@@ -23,7 +23,7 @@ class TaskController extends BaseController {
 	 */
 	public function create($parent_id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = new \Task(Input::get());
         $task->validate();
@@ -55,7 +55,7 @@ class TaskController extends BaseController {
 	 */
 	public function show($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -75,7 +75,7 @@ class TaskController extends BaseController {
 	 */
 	public function edit($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -102,7 +102,7 @@ class TaskController extends BaseController {
 	 */
 	public function update($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -128,7 +128,7 @@ class TaskController extends BaseController {
 	 */
 	public function destroy($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
