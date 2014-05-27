@@ -1,13 +1,14 @@
 <?php
 
 namespace Talentica\Controller;
+
 class ListController extends BaseController {
 
     protected $user; //Protected to allow overriding in tests
 
     public function __construct()
     {
-            $this->user = Auth::user();
+            $this->user = \Auth::user();
     }
 
 	/**
@@ -19,7 +20,7 @@ class ListController extends BaseController {
 	{
         $lists = $this->user->tasklists;
 
-        return Response::json($lists->toArray());
+        return \Response::json($lists->toArray());
 	}
 
 	/**
@@ -29,16 +30,16 @@ class ListController extends BaseController {
 	 */
 	public function create()
 	{
-		$list = new TaskList(Input::get());
+		$list = new \TaskList(Input::get());
         $list->validate();
         $list->user_id = $this->user->id;
 
         if (!$list->save())
         {
-            App::abort(500, 'List was not saved');
+            \App::abort(500, 'List was not saved');
         }
 
-        return Response::json($list->toArray(), 201);
+        return \Response::json($list->toArray(), 201);
 	}
 
 	/**
@@ -59,9 +60,9 @@ class ListController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $list = TaskList::findByOwnerAndId($this->user, $id);
+        $list = \TaskList::findByOwnerAndId($this->user, $id);
 
-        return Response::json($list->toArray());
+        return \Response::json($list->toArray());
 	}
 
 	/**
@@ -84,16 +85,16 @@ class ListController extends BaseController {
 
 	public function update($id)
 	{
-        $list = TaskList::findByOwnerAndId($this->user(), $id);
+        $list = \TaskList::findByOwnerAndId($this->user(), $id);
         $list->fill(Input::get());
         $list->validate();
 
         if (!$list->save())
         {
-            App::abort(500, 'List was not updated');
+            \App::abort(500, 'List was not updated');
         }
 
-        return Response::json($list->toArray());//
+        return \Response::json($list->toArray());//
 	}
 
 	/**
@@ -105,10 +106,10 @@ class ListController extends BaseController {
 
 	public function destroy($id)
 	{
-        $list = TaskList::findByOwnerAndId($this->user(), $id);
+        $list = \TaskList::findByOwnerAndId($this->user(), $id);
         $list->delete();
 
-        return Response::make(null, 204);
+        return \Response::make(null, 204);
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+namespace Talentica\Controller;
 
 class TaskController extends BaseController {
 
@@ -10,9 +11,9 @@ class TaskController extends BaseController {
 	 */
 	public function index($parent_id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
-        return Response::json($list->tasks->toArray());
+        return \Response::json($list->tasks->toArray());
 	}
 
 	/**
@@ -22,18 +23,18 @@ class TaskController extends BaseController {
 	 */
 	public function create($parent_id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
-        $task = new Task(Input::get());
+        $task = new \Task(Input::get());
         $task->validate();
         $task->list_id = $parent_id;
 
         if (!$task->save())
         {
-            App::abort(500, 'Task was not saved');
+            \App::abort(500, 'Task was not saved');
         }
 
-        return Response::json($task->toArray(), 201);
+        return \Response::json($task->toArray(), 201);
 	}
 
 	/**
@@ -54,16 +55,16 @@ class TaskController extends BaseController {
 	 */
 	public function show($parent_id, $id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
         if (!$task)
         {
-            App::abort(404);
+            \App::abort(404);
         }
 
-        return Response::json($task->toArray());
+        return \Response::json($task->toArray());
 	}
 
 	/**
@@ -74,13 +75,13 @@ class TaskController extends BaseController {
 	 */
 	public function edit($parent_id, $id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
         if (!$task)
         {
-            App::abort(404);
+            \App::abort(404);
         }
 
         $task->fill(Input::get());
@@ -88,7 +89,7 @@ class TaskController extends BaseController {
 
         if (!$task->save())
         {
-            App::abort(500, 'Task was not updated');
+            \App::abort(500, 'Task was not updated');
         }
 
     }
@@ -101,13 +102,13 @@ class TaskController extends BaseController {
 	 */
 	public function update($parent_id, $id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
         if (!$task)
         {
-            App::abort(404);
+            \App::abort(404);
         }
 
         $task->fill(Input::get());
@@ -115,7 +116,7 @@ class TaskController extends BaseController {
 
         if (!$task->save())
         {
-            App::abort(500, 'Task was not updated');
+            \App::abort(500, 'Task was not updated');
         }
 	}
 
@@ -127,18 +128,18 @@ class TaskController extends BaseController {
 	 */
 	public function destroy($parent_id, $id)
 	{
-        $list = TaskList::findByOwnerAndId(Auth::user(), $parent_id);
+        $list = \TaskList::findByOwnerAndId(Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
         if (!$task)
         {
-            App::abort(404);
+            \App::abort(404);
         }
 
         $task->delete();
 
-        return Response::make(null, 204);
+        return \Response::make(null, 204);
 	}
 
 }
