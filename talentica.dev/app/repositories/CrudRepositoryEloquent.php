@@ -8,7 +8,6 @@
 
 class CrudRepositoryEloquent implements CrudRepository
 {
-
     /**
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
@@ -16,6 +15,7 @@ class CrudRepositoryEloquent implements CrudRepository
      * @param entity
      * @return the saved entity
      */
+
     public function save($entity)
     {
         $this->model->save($entity);
@@ -165,7 +165,6 @@ class CrudRepositoryEloquent implements CrudRepository
      */
     public function  deleteAll()
     {
-        $result = array();
         //Find and destroy
         $entities = $this->findAll();
         return $this->deleteAll($entities);

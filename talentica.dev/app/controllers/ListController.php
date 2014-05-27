@@ -1,12 +1,14 @@
 <?php
-
 class ListController extends \BaseController {
 
     protected $user; //Protected to allow overriding in tests
 
+    protected $service ;
+
     public function __construct()
     {
-            $this->user = Auth::user();
+        $this->user = Auth::user();
+        $this->service = new UserRepository($this->user);
     }
 
 	/**
@@ -16,7 +18,7 @@ class ListController extends \BaseController {
 	 */
 	public function index()
 	{
-        $lists = $this->user->tasklists;
+        $lists = $this->service->get_tasklists();
 
         return Response::json($lists->toArray());
 	}
@@ -30,7 +32,7 @@ class ListController extends \BaseController {
 	{
 		$list = new TaskList(Input::get());
         $list->validate();
-        $list->user_id = $this->user->id;
+        $list->user_id = $this->service->get_id();
 
         if (!$list->save())
         {
@@ -40,7 +42,7 @@ class ListController extends \BaseController {
         return Response::json($list->toArray(), 201);
 	}
 
-	/**
+	/*i
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response

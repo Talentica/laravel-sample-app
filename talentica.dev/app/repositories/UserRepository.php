@@ -8,10 +8,10 @@
 
 class UserRepository  extends CrudRepositoryEloquent
 {
-    public function __construct(User $user)
+    private $user;
+    public function __construct(User $user = null)
     {
-        parent::__construct($user);
-
+      $this->user = $user;
     }
     /**
      * Add custom function as necessary via traits

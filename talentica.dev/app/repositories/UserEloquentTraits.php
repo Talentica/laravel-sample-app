@@ -9,4 +9,14 @@
 trait UserEloquentTraits
 {
 
+    public function get_id()
+    {
+        return $this->user->id;
+    }
+
+    public function get_tasklists()
+    {
+        return $this->user->tasklists;
+    }
+
 }
