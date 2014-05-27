@@ -14,8 +14,8 @@
 Route::group(array('prefix' => 'api/v1', 'before' => 'api.auth|api.limit'), function()
 {
 
-    Route::resource('lists', 'ListController');
+    Route::resource('lists', 'Talentica\Controller\ListController');
 	// Get tasks for list
-    Route::resource('lists.tasks', 'TaskController');
+    Route::resource('lists.tasks', 'Talentica\Controller\TaskController');
 
 });

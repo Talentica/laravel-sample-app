@@ -69,6 +69,7 @@ class User extends Eloquent implements UserInterface
 		return Str::random(32);
 	}
 
+
     /**
      * Get the token value for the "remember me" session.
      *
@@ -76,7 +77,7 @@ class User extends Eloquent implements UserInterface
      */
     public function getRememberToken()
     {
-        // TODO: Implement getRememberToken() method.
+        return $this->token;
     }
 
     /**
@@ -87,16 +88,22 @@ class User extends Eloquent implements UserInterface
      */
     public function setRememberToken($value)
     {
-        // TODO: Implement setRememberToken() method.
+        $this->token = $token;
     }
 
     /**
      * Get the column name for the "remember me" token.
      *
      * @return string
-     */
+     */  
     public function getRememberTokenName()
     {
-        // TODO: Implement getRememberTokenName() method.
+        return $this->token;
+
+    }
+
+    public function setRememberTokenName($token)
+    {
+        $this->token = $token;
     }
 }

@@ -5,7 +5,6 @@
 	"autoload": {
 		"classmap": [
 			"app/commands",
-			"app/controllers",
 			"app/exceptions",
 			"app/models",
 			"app/database/migrations",
@@ -13,6 +12,10 @@
 			"app/tests/TestCase.php",
             "app/repositories"
 		]
+        ,
+        "psr-4": {
+            "Talentica\\Controller\\":"app/controllers"
+        }
 	},
 	"scripts": {
 		"post-update-cmd": "php artisan optimize"
