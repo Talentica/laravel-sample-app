@@ -4,26 +4,35 @@ namespace Talentica\Controller;
 
 class TaskController extends BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    private $service;
+
+    function __construct(\TasklistRepository $service)
+    {
+       $this->service = $service;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $parent_id
+     * @return Response
+     */
 	public function index($parent_id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         return \Response::json($list->tasks->toArray());
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param $parent_id
+     * @return Response
+     */
 	public function create($parent_id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = new \Task(Input::get());
         $task->validate();
@@ -55,7 +64,7 @@ class TaskController extends BaseController {
 	 */
 	public function show($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -75,7 +84,7 @@ class TaskController extends BaseController {
 	 */
 	public function edit($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -102,7 +111,7 @@ class TaskController extends BaseController {
 	 */
 	public function update($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 
@@ -128,7 +137,7 @@ class TaskController extends BaseController {
 	 */
 	public function destroy($parent_id, $id)
 	{
-        $list = \TaskList::findByOwnerAndId(\Auth::user(), $parent_id);
+        $list = $this->service->findByOwnerAndId(\Auth::user(), $parent_id);
 
         $task = $list->tasks()->find($id);
 

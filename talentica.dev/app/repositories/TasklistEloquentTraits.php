@@ -7,4 +7,10 @@
  */
 trait TasklistEloquentTraits{
 
+
+    public function findByOwnerAndId($user, $id)
+    {
+        return \TaskList::findByOwnerAndId($user , $id);
+    }
+
 }

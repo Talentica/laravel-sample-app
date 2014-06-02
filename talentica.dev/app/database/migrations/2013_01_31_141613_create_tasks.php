@@ -18,7 +18,6 @@ class CreateTasks extends Migration {
 			$table->string('description');
 			$table->boolean('completed');
 			$table->timestamps();
-
 			$table->foreign('list_id')->references('id')->on('lists')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
