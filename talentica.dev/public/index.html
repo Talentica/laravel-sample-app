@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>ToDo Lists</title>
-</head>
+	<head>
+	<meta charset="UTF-8">
+		<title>ToDo Lists - Angular client</title>
+	</head>
 <body>
-	Hello Laravel!
+	<div ng-app="todoApp">
+		<h1>ToDo Lists!</h1>
+		
+		<div ng-view></div>
+	</div>	
+	<script type="text/javascript" src="angular/app/js/lib/angular.js"></script>
+	<script type="text/javascript" src="angular/app/js/lib/angular-route.js"></script>
+	<script type="text/javascript" src="angular/app/js/lib/angular-resource.js"></script>
+	<script type="text/javascript" src="angular/app/js/lib/angular-cookies.js"></script>
+	
+	<script type="text/javascript" src="angular/app/js/src/todoApp.js"></script>
+	<script type="text/javascript" src="angular/app/js/src/controllers.js"></script>
+	<script type="text/javascript" src="angular/app/js/src/services.js"></script>
 </body>
 </html>
