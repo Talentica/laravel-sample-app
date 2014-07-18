@@ -1,0 +1,22 @@
+<div>
+<h2>Todo Lists</h2>
+
+<form name="add-list" ng-submit="addList()">
+	<fieldset>
+		<legend>Add List</legend>
+		<div>
+			<label for="list-name">List Name</label>
+			<input id="list-name" ng-model="listName" />
+		</div>
+		
+		<div>
+			<button type="submit">Add</button>
+		</div>
+	</fieldset>	
+</form>
+
+
+<ol>
+	<li ng-repeat="list in lists">{{list.name}} <a href="#/list/{{list.id}}">edit</a></li>
+</ol>
+</div>
